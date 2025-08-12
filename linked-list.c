@@ -41,12 +41,29 @@ void PrintNodes(struct Node* head) {
   printf("\n");
 }
 
+struct Node* InsertAtBegin(struct Node* head, int data) {
+  struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+  newNode->data = data;
+  newNode->next = NULL;
+
+  if (head == NULL) {
+    head = newNode;
+    return head;
+  }
+
+  newNode->next = head;
+  head = newNode;
+
+  return head;
+}
+
 int main(void) {
   // keep track of the first node in the linked list (essential info)
   struct Node* head = NULL;
-  
+
   head = InsertAtEnd(head, 5);
   head = InsertAtEnd(head, 10);
   head = InsertAtEnd(head, 20);
+  head = InsertAtBegin(head, 30);
   PrintNodes(head);
 }
