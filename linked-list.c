@@ -57,6 +57,23 @@ struct Node* InsertAtBegin(struct Node* head, int data) {
   return head;
 }
 
+// Reverse the linked list
+
+struct Node* Reverse(struct Node* head) {
+  struct Node *prev, *current, *next;
+  current = head;
+  prev = NULL;
+  while (current != NULL) {
+    next = current->next;
+    current->next = prev;
+    prev = current;
+    current = next;
+  }
+
+  return prev;
+}
+
+
 int main(void) {
   // keep track of the first node in the linked list (essential info)
   struct Node* head = NULL;
@@ -65,5 +82,9 @@ int main(void) {
   head = InsertAtEnd(head, 10);
   head = InsertAtEnd(head, 20);
   head = InsertAtBegin(head, 30);
+  PrintNodes(head);
+  head = Reverse(head);
+  PrintNodes(head);
+  head = InsertAtBegin(head, 10);
   PrintNodes(head);
 }
