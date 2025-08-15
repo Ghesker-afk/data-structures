@@ -1,7 +1,7 @@
 package main
 
 import (
-	"data-structures/linkedlist"
+	"data-structures/linked"
 )
 
 func main() {
@@ -21,11 +21,11 @@ func main() {
 		}
 	*/
 
-	var head linkedlist.*Node
-	head = linkedlist.InsertAtBegin(head, 5)
-	head = linkedlist.InsertAtBegin(head, 10)
-	head = linkedlist.InsertAtBegin(head, 2)
-	linkedlist.PrintNodes(head)
-	head = linkedlist.Reverse(head)
-	linkedlist.PrintNodes(head)
+	var head *(linked.Node)
+	head = linked.InsertAtBegin(head, 5)
+	head = linked.InsertAtBegin(head, 10)
+	head = linked.InsertAtBegin(head, 2)
+	linked.PrintNodes(head)
+	head = linked.Reverse(head)
+	linked.PrintNodes(head)
 }
