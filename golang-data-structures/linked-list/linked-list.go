@@ -1,4 +1,4 @@
-package main
+package linkedlist
 
 import "fmt"
 
@@ -32,10 +32,17 @@ func PrintNodes(head *Node) {
 	fmt.Print("\n")
 }
 
-func main() {
-	var head *Node
-	head = InsertAtBegin(head, 5)
-	head = InsertAtBegin(head, 10)
-	head = InsertAtBegin(head, 2)
-	PrintNodes(head)
+func Reverse(head *Node) *Node {
+	current := head
+	next := head
+	var prev *Node = nil
+
+	for current != nil {
+		next = (*current).next
+		(*current).next = prev
+		prev = current
+		current = next
+	}
+
+	return prev
 }
