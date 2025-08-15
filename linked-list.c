@@ -73,6 +73,26 @@ struct Node* Reverse(struct Node* head) {
   return prev;
 }
 
+// Delete a node from nth position
+
+struct Node* Delete(struct Node* head, int n) {
+  struct Node* temp1 = head;
+  if (n == 1) {
+    head = temp1->next;
+    free(temp1);
+    return head;
+  }
+
+  for (int i = 0; i < n - 2; i++) {
+    temp1 = temp1->next;
+  }
+
+  struct Node* temp2 = temp1->next;
+  temp1->next = temp2->next;
+  free(temp2);
+
+  return head;
+}
 
 int main(void) {
   // keep track of the first node in the linked list (essential info)
@@ -86,5 +106,8 @@ int main(void) {
   head = Reverse(head);
   PrintNodes(head);
   head = InsertAtBegin(head, 10);
+  PrintNodes(head);
+  head = Delete(head, 1); 
+  head = Delete(head, 2); 
   PrintNodes(head);
 }
