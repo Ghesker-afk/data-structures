@@ -48,6 +48,32 @@ bool Search(struct BstNode* root, double data) {
   }
 }
 
+double FindMin(struct BstNode* root) {
+  if (root == NULL) {
+    printf("Error: Tree is empty\n");
+    return -1.0;
+  }
+
+  while (root->left != NULL) {
+    root = root->left;
+  }
+
+  return root->data;
+}
+
+double FindMax(struct BstNode* root) {
+  if (root == NULL) {
+    printf("Error: Tree is empty\n");
+    return -1.0;
+  }
+
+  while (root->right != NULL) {
+    root = root->right;
+  }
+
+  return root->data;
+}
+
 int main(void) {
   struct BstNode* root = NULL; // creating an empty tree
   root = Insert(root, 15.0);
@@ -56,6 +82,7 @@ int main(void) {
   root = Insert(root, 25.0);
   root = Insert(root, 8.0);
   root = Insert(root, 12.0);
+  root = Insert(root, 35.0);
   double number;
   printf("Type a number: ");
   scanf("%lf", &number);
@@ -65,5 +92,10 @@ int main(void) {
   else {
     printf("Not found\n");
   }
+
+  int min = FindMin(root);
+  int max = FindMax(root);
+  printf("The min value is %d, and the maximum value is %d.\n", min, max);
+
   return 0;
 }
