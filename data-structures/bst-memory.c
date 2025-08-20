@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+struct BstNode* GetNewNode(double data);
+
 // Represents the node in a binary search tree data structure, which has there fields: two of them are pointers that references the children node, and one stores data.
 
 struct BstNode {
@@ -9,6 +11,7 @@ struct BstNode {
   struct BstNode* left;
   struct BstNode* right;
 };
+
 
 struct BstNode* GetNewNode(double data) {
   struct BstNode* newNode = (struct BstNode*) malloc(sizeof(struct BstNode));
@@ -74,6 +77,17 @@ double FindMax(struct BstNode* root) {
   return root->data;
 }
 
+void Preorder(struct BstNode* root) {
+  if (root == NULL) {
+    return;
+  } 
+  printf("%.2lf ", root->data);
+  Preorder(root->left);
+  Preorder(root->right);
+}
+
+
+
 int main(void) {
   struct BstNode* root = NULL; // creating an empty tree
   root = Insert(root, 15.0);
@@ -96,6 +110,9 @@ int main(void) {
   int min = FindMin(root);
   int max = FindMax(root);
   printf("The min value is %d, and the maximum value is %d.\n", min, max);
+
+  Preorder(root);
+
 
   return 0;
 }
