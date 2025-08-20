@@ -86,6 +86,26 @@ void Preorder(struct BstNode* root) {
   Preorder(root->right);
 }
 
+// Inorder traversal in a binary search tree (BST) will give us the elements in sorted order.
+
+void Inorder(struct BstNode* root) {
+  if (root == NULL) {
+    return;
+  }
+  Inorder(root->left);
+  printf("%lf ", root->data);
+  Inorder(root->right);
+}
+
+
+void Postorder(struct BstNode* root) {
+  if (root == NULL) {
+    return;
+  }
+  Postorder(root->left);
+  Postorder(root->right);
+  printf("%c ", root->data);
+}
 
 
 int main(void) {
@@ -112,6 +132,8 @@ int main(void) {
   printf("The min value is %d, and the maximum value is %d.\n", min, max);
 
   Preorder(root);
+  Postorder(root);
+  Inorder(root);
 
 
   return 0;
