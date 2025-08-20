@@ -1,6 +1,9 @@
 package linked
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type IntNode struct {
 	Data int
@@ -51,4 +54,32 @@ func (ll *LinkedList) Print() {
 		temp = (*temp).Next
 	}
 	fmt.Printf("\n")
+}
+
+func (ll *LinkedList) Delete(position int) {
+	temp1 := ll.Head
+
+	temp3 := ll.Head
+	length := 0
+
+	for temp3 != nil {
+		length++
+		temp3 = (*temp3).Next
+	}
+
+	if position > length || position < 1 {
+		log.Fatal("Error: index has out of bound. Please specify a valid position to remove")
+	}
+
+	if position == 1 {
+		ll.Head = (*temp1).Next
+		return
+	}
+
+	for i := 0; i < position-2; i++ {
+		temp1 = (*temp1).Next
+	}
+
+	temp2 := (*temp1).Next
+	(*temp1).Next = (*temp2).Next
 }
