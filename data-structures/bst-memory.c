@@ -1,42 +1,46 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-
-struct BstNode* GetNewNode(double data);
 
 // Represents the node in a binary search tree data structure, which has there fields: two of them are pointers that references the children node, and one stores data.
 
-struct BstNode {
-  double data;
-  struct BstNode* left;
-  struct BstNode* right;
-};
+typedef struct node {
+  int data;
+  struct node* left;
+  struct node* right;
+} node;
 
+// Acquires a new node in the heap sectiony of memory, and returns a pointer that stores node's address
 
-struct BstNode* GetNewNode(double data) {
-  struct BstNode* newNode = (struct BstNode*) malloc(sizeof(struct BstNode));
+struct node* getNewNode(int data) {
+  node* newNode = (struct node*) malloc(sizeof(node));
   newNode->data = data;
   newNode->left = NULL;
   newNode->right = NULL;
   return newNode;
 }
 
-struct BstNode* Insert(struct BstNode* root, double data) {
+
+// Adds a node to the binary search tree, placing nodes with values lesser or equal to the current node on the left subtree, or greater values in the right subtree.
+
+node* insertNode(node* root, int data) {
   if (root == NULL) {
-    root = GetNewNode(data);
+    root = getNewNode(data);
     return root;
   }
   else if (data <= root->data) {
-    root->left = Insert(root->left, data);
+    root->left = insertNode(root->left, data);
   }
   else {
-    root->right = Insert(root->right, data);
+    root->right = insertNode(root->right, data);
   }
 
   return root;
 }
 
-bool Search(struct BstNode* root, double data) {
+// Verifies if a determined value are in the binary search tree. Returns false if the value is absent.
+
+bool searchValue(node* root, int data) {
   if (root == NULL) {
     return false;
   }
@@ -44,17 +48,19 @@ bool Search(struct BstNode* root, double data) {
     return true;
   }
   else if (data <= root->data) {
-    return Search(root->left, data);
+    return searchValue(root->left, data);
   }
   else {
-    return Search(root->right, data);
+    return searchValue(root->right, data);
   }
 }
 
-double FindMin(struct BstNode* root) {
+// Finds the minimum value in the binary search tree.
+
+int findMin(node* root) {
   if (root == NULL) {
     printf("Error: Tree is empty\n");
-    return -1.0;
+    return -1;
   }
 
   while (root->left != NULL) {
@@ -64,10 +70,12 @@ double FindMin(struct BstNode* root) {
   return root->data;
 }
 
-double FindMax(struct BstNode* root) {
+// Finds the maximum value in the binary search tree.
+
+int findMax(node* root) {
   if (root == NULL) {
     printf("Error: Tree is empty\n");
-    return -1.0;
+    return -1;
   }
 
   while (root->right != NULL) {
@@ -77,64 +85,62 @@ double FindMax(struct BstNode* root) {
   return root->data;
 }
 
-void Preorder(struct BstNode* root) {
+// Traverse the binary search tree in the order: <root><left><right>.
+
+void Preorder(node* root) {
   if (root == NULL) {
     return;
   } 
-  printf("%.2lf ", root->data);
+  printf("%d ", root->data);
   Preorder(root->left);
   Preorder(root->right);
 }
 
 // Inorder traversal in a binary search tree (BST) will give us the elements in sorted order.
 
-void Inorder(struct BstNode* root) {
+void Inorder(node* root) {
   if (root == NULL) {
     return;
   }
   Inorder(root->left);
-  printf("%lf ", root->data);
+  printf("%d ", root->data);
   Inorder(root->right);
 }
 
+// Traverse the binary search tree in the order: <left><right><root>.
 
-void Postorder(struct BstNode* root) {
+void Postorder(node* root) {
   if (root == NULL) {
     return;
   }
   Postorder(root->left);
   Postorder(root->right);
-  printf("%c ", root->data);
+  printf("%d ", root->data);
 }
 
 
 int main(void) {
-  struct BstNode* root = NULL; // creating an empty tree
-  root = Insert(root, 15.0);
-  root = Insert(root, 10.0);
-  root = Insert(root, 20.0);
-  root = Insert(root, 25.0);
-  root = Insert(root, 8.0);
-  root = Insert(root, 12.0);
-  root = Insert(root, 35.0);
-  double number;
+  node* root = NULL; // creating an empty tree
+  root = insertNode(root, 15);
+  root = insertNode(root, 10);
+  root = insertNode(root, 20);
+  root = insertNode(root, 25);
+
+  int number;
   printf("Type a number: ");
-  scanf("%lf", &number);
-  if (Search(root, number) == true) {
+  scanf("%d", &number);
+  if (searchValue(root, number) == true) {
     printf("Found!\n");
   } 
   else {
     printf("Not found\n");
   }
 
-  int min = FindMin(root);
-  int max = FindMax(root);
+  int min = findMin(root);
+  int max = findMax(root);
   printf("The min value is %d, and the maximum value is %d.\n", min, max);
 
-  Preorder(root);
-  Postorder(root);
   Inorder(root);
-
 
   return 0;
 }
