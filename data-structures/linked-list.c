@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Creating a struct that represents nodes, which are basically containers with some data and a reference to next node
+// Creating a struct that represents nodes, which are basically containers with some data and a reference to next node.
 
-struct Node {
+typedef struct node {
   int data;
-  struct Node* next;
-};
+  struct node* next;
+} node;
 
 // Adds a new node at the end of the linked list
 
-struct Node* InsertAtEnd(struct Node* head, int data) {
-  struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+node* insertAtEnd(node* head, int data) {
+  node* newNode = (node*) malloc(sizeof(node));
   newNode->data = data;
   newNode->next = NULL;
 
@@ -20,7 +20,7 @@ struct Node* InsertAtEnd(struct Node* head, int data) {
     return head;
   }
 
-  struct Node* temp = head;
+  node* temp = head;
   while (temp->next != NULL) {
     temp = temp->next;
   }
@@ -32,7 +32,7 @@ struct Node* InsertAtEnd(struct Node* head, int data) {
 
 // Prints all elements in the linked list
 
-void PrintNodes(struct Node* head) {
+void printNodes(node* head) {
   printf("Values:");
   while (head != NULL) {
     printf(" %d", head->data);
@@ -41,8 +41,8 @@ void PrintNodes(struct Node* head) {
   printf("\n");
 }
 
-struct Node* InsertAtBegin(struct Node* head, int data) {
-  struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+node* insertAtBegin(node* head, int data) {
+  node* newNode = (node*) malloc(sizeof(node));
   newNode->data = data;
   newNode->next = NULL;
 
@@ -59,8 +59,8 @@ struct Node* InsertAtBegin(struct Node* head, int data) {
 
 // Reverse the linked list
 
-struct Node* Reverse(struct Node* head) {
-  struct Node *prev, *current, *next;
+node* reverse(node* head) {
+  node *prev, *current, *next;
   current = head;
   prev = NULL;
   while (current != NULL) {
@@ -75,8 +75,8 @@ struct Node* Reverse(struct Node* head) {
 
 // Delete a node from nth position
 
-struct Node* Delete(struct Node* head, int n) {
-  struct Node* temp1 = head;
+node* delete(node* head, int n) {
+  node* temp1 = head;
   if (n == 1) {
     head = temp1->next;
     free(temp1);
@@ -87,7 +87,7 @@ struct Node* Delete(struct Node* head, int n) {
     temp1 = temp1->next;
   }
 
-  struct Node* temp2 = temp1->next;
+  node* temp2 = temp1->next;
   temp1->next = temp2->next;
   free(temp2);
 
@@ -96,18 +96,18 @@ struct Node* Delete(struct Node* head, int n) {
 
 int main(void) {
   // keep track of the first node in the linked list (essential info)
-  struct Node* head = NULL;
+  node* head = NULL;
 
-  head = InsertAtEnd(head, 5);
-  head = InsertAtEnd(head, 10);
-  head = InsertAtEnd(head, 20);
-  head = InsertAtBegin(head, 30);
-  PrintNodes(head);
-  head = Reverse(head);
-  PrintNodes(head);
-  head = InsertAtBegin(head, 10);
-  PrintNodes(head);
-  head = Delete(head, 1); 
-  head = Delete(head, 2); 
-  PrintNodes(head);
+  head = insertAtEnd(head, 5);
+  head = insertAtEnd(head, 10);
+  head = insertAtEnd(head, 20);
+  head = insertAtBegin(head, 30);
+  printNodes(head);
+  head = reverse(head);
+  printNodes(head);
+  head = insertAtBegin(head, 10);
+  printNodes(head);
+  head = delete(head, 1); 
+  head = delete(head, 2); 
+  printNodes(head);
 }
