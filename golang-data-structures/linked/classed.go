@@ -5,17 +5,17 @@ import (
 	"log"
 )
 
-type IntNode struct {
-	Data int
-	Next *IntNode
+type Node[T any] struct {
+	Data T
+	Next *Node[T]
 }
 
-type LinkedList struct {
-	Head *IntNode
+type LinkedList[T any] struct {
+	Head *Node[T]
 }
 
-func (ll *LinkedList) InsertAtBegin(data int) {
-	newNode := new(IntNode)
+func (ll *LinkedList[T]) InsertAtBegin(data T) {
+	newNode := new(Node[T])
 	(*newNode).Data = data
 	(*newNode).Next = nil
 
@@ -28,8 +28,8 @@ func (ll *LinkedList) InsertAtBegin(data int) {
 	ll.Head = newNode
 }
 
-func (ll *LinkedList) InsertAtEnd(data int) {
-	newNode := new(IntNode)
+func (ll *LinkedList[T]) InsertAtEnd(data T) {
+	newNode := new(Node[T])
 	(*newNode).Data = data
 	(*newNode).Next = nil
 
@@ -46,17 +46,17 @@ func (ll *LinkedList) InsertAtEnd(data int) {
 	(*temp).Next = newNode
 }
 
-func (ll *LinkedList) Print() {
+func (ll *LinkedList[T]) Print() {
 	temp := ll.Head
 	fmt.Printf("Values:")
 	for temp != nil {
-		fmt.Printf(" %d", (*temp).Data)
+		fmt.Printf(" %v", (*temp).Data)
 		temp = (*temp).Next
 	}
 	fmt.Printf("\n")
 }
 
-func (ll *LinkedList) Delete(position int) {
+func (ll *LinkedList[T]) Delete(position int) {
 	temp1 := ll.Head
 
 	temp3 := ll.Head

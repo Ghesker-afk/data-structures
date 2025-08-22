@@ -1,5 +1,6 @@
 package linked
 
+/*
 import "fmt"
 
 type Node struct {
@@ -46,3 +47,4 @@ func Reverse(head *Node) *Node {
 
 	return prev
 }
+*/
