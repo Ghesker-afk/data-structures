@@ -23,7 +23,7 @@ A operação de inserir um novo elemento na pilha é nomeada 'push', e outra ope
 
 ---
 
-Algoritmos de Ordenação
+### Algoritmos de Ordenação
 
 ### Selection Sort
 
@@ -34,5 +34,11 @@ O *Selection Sort* é um algoritmo simples que funciona escolhendo repetidamente
 ### Merge Sort
 
 O *Merge Sort* segue a estratégia de **Divisão e Conquista**, dividindo o array em metades até restarem subarrays com apenas um elemento e, em seguida, mesclando-os de forma ordenada. Esse processo garante que o algoritmo seja estável, preservando a ordem de elementos iguais, e extremamente eficiente para grandes volumes de dados. Seu tempo de execução é **O(n log n)** em todos os casos (melhor, médio e pior), mas em contrapartida ele exige memória auxiliar proporcional ao tamanho da entrada, resultando em uma complexidade espacial de **O(n)**.
+
+---
+
+### Insertion Sort
+
+O *Insertion Sort* é um algoritmo de ordenação que imita o processo de organizar cartas na mão: percorremos o array da esquerda para a direita e, a cada novo elemento, inserimos ele na posição correta em relação aos que já foram ordenados. Esse método faz com que, a cada iteração, a porção inicial do array esteja sempre ordenada. Trata-se de um algoritmo estável, pois mantém a ordem relativa de elementos iguais, e funciona "in place", utilizando apenas memória constante (**O(1)**). Seu maior ponto fraco é o desempenho: no pior e no caso médio, apresenta tempo quadrático (**O(n²)**), pois cada inserção pode exigir deslocar muitos elementos. No entanto, quando a entrada já está parcialmente ordenada, o desempenho melhora significativamente, podendo chegar a **O(n)** no melhor caso. Isso faz do *Insertion Sort* uma boa escolha para listas pequenas ou quase ordenadas, embora não seja adequado para grandes volumes de dados.
 
 ---
