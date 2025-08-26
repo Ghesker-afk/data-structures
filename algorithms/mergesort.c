@@ -8,39 +8,44 @@
  * @param leftCount number of elements in L
  * @param rightCount number of elements in R
  */
-
  void merge(int *A, int *L, int leftCount, int *R, int rightCount) {
   int i, j, k;
 
   // i - to mark the index of left subarray (L)
-  // j - to mark the index of right sub-array (R)
+  // j - to mark the index of right subarray (R)
   // k - to mark the index of merged subarray (A)
 
   i = 0, j = 0, k = 0;
 
   while(i < leftCount && j < rightCount) {
-    if (L[i] < R[j]) 
+    if (L[i] <= R[j]) 
     {
-      A[k++] = L[i++];
+      A[k] = L[i];
+      i++;
     } 
     else 
     {
-      A[k++] = R[j++];
+      A[k] = R[j];
+      j++;
     }
+
+    k++;
   }
 
   while (i < leftCount) {
-      A[k++] = L[i++];
+      A[k] = L[i];
+      i++;
+      k++;
     }
 
   while (j < rightCount) {
-    A[k++] = R[j++];
+    A[k] = R[j];
+    j++;
+    k++;
   }
  }
 
- /**
-  * @brief recursive function to sort an array of integers
-  * 
+ /** @brief recursive function to sort an array of integers 
   * @param A array of integers
   * @param n number of elements in A
   */
@@ -56,8 +61,8 @@ void mergeSort(int *A, int n) {
   mid = n / 2; // find the mid index.
 
   // create left and right subarrays
-  // mid elements (from index 0 till mid-1) should be part of left sub-array.
-  // and (n-mid) elements (from mid to n-1) will be part of right sub-array.
+  // mid elements (from index 0 till mid-1) should be part of left subarray.
+  // and (n-mid) elements (from mid to n-1) will be part of right subarray.
 
   L = (int*)malloc(mid * sizeof(int));
   R = (int*)malloc((n - mid) * sizeof(int));
@@ -67,7 +72,7 @@ void mergeSort(int *A, int n) {
   }
 
   for (i = mid; i < n; i++) {
-    R[i - mid] = A[i];
+    R[i - mid] = A[i]; // creating right subarray
   }
 
   mergeSort(L, mid); // sorting the left subarray
