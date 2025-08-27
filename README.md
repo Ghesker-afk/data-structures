@@ -1,10 +1,10 @@
 ---
 
-Olá, seja bem vindo ao meu repositório sobre estruturas de dados!
+### Olá, seja bem vindo ao meu repositório sobre estruturas de dados!
 
-O objetivo desse repositório é guardar as diferentes estruturas de dados clássicas, como arrays, arrays dinâmicos, listas encadeadas, pilhas, filhas, árvores e grafos.
-A princípio, cada uma dessas estruturas e suas respectivas operações - como busca, inserção, deleção, etc -, bem como suas características (como a altura de uma árvore,
-a cabeça de uma lista encadeada, etc), serão implementadas utilizando a linguagem de programação C.
+O objetivo desse repositório é guardar as diferentes estruturas de dados clássicas, como arrays, arrays dinâmicos, listas ligadas, pilhas, filas, árvores e grafos.
+A princípio, cada uma dessas estruturas e suas respectivas operações - como busca, inserção, deleção, travessia, etc -, bem como suas características (como a altura de uma árvore,
+a cabeça de uma lista ligada, etc), serão implementadas utilizando a linguagem de programação C (e, às vezes, Golang). 
 
 À medida que os meus conhecimentos e domínio acerca do tema forem aumentando, estarei implementando diferentes abordagens e usos de cada uma dessas estruturas, e também 
 estarei expandindo as suas implementações para outras linguagens. Espero que goste dos resultados - e, principalmente, do caminho até eles! 
@@ -33,9 +33,13 @@ O *Selection Sort* é um algoritmo simples que funciona escolhendo repetidamente
 
 ---
 
-### Merge Sort
+## Bubble Sort  
 
-O *Merge Sort* segue a estratégia de **Divisão e Conquista**, dividindo o array em metades até restarem subarrays com apenas um elemento e, em seguida, mesclando-os de forma ordenada. Esse processo garante que o algoritmo seja estável, preservando a ordem de elementos iguais, e extremamente eficiente para grandes volumes de dados. Seu tempo de execução é **O(n log n)** em todos os casos (melhor, médio e pior), mas em contrapartida ele exige memória auxiliar proporcional ao tamanho da entrada, resultando em uma complexidade espacial de **O(n)**.
+O **Bubble Sort** é um dos algoritmos de ordenação mais simples e didáticos. Seu funcionamento se baseia em comparar pares de elementos adjacentes e trocá-los caso estejam fora de ordem. Esse processo é repetido diversas vezes até que todos os elementos estejam ordenados, como se os maiores valores "borbulhassem" para o fim da lista a cada passagem.  
+
+Apesar de ser bastante intuitivo e fácil de implementar, o Bubble Sort não é eficiente em termos de desempenho. No pior e no caso médio, sua complexidade de tempo é **O(n²)**, o que o torna impraticável para grandes conjuntos de dados. Por outro lado, no melhor cenário — quando a lista já está ordenada — sua complexidade é **O(n)**, pois apenas uma varredura é suficiente para verificar que não há trocas necessárias. Em termos de espaço, é um algoritmo **in-place**, ou seja, não exige memória adicional significativa além da lista original (**O(1)**).  
+
+O Bubble Sort é pouco utilizado em aplicações reais devido à sua baixa eficiência, mas permanece como um algoritmo importante do ponto de vista pedagógico. Ele ajuda iniciantes a compreender conceitos fundamentais de ordenação, comparação e troca de elementos em uma estrutura de dados.  
 
 ---
 
@@ -44,3 +48,7 @@ O *Merge Sort* segue a estratégia de **Divisão e Conquista**, dividindo o arra
 O *Insertion Sort* é um algoritmo de ordenação que imita o processo de organizar cartas na mão: percorremos o array da esquerda para a direita e, a cada novo elemento, inserimos ele na posição correta em relação aos que já foram ordenados. Esse método faz com que, a cada iteração, a porção inicial do array esteja sempre ordenada. Trata-se de um algoritmo estável, pois mantém a ordem relativa de elementos iguais, e funciona "in place", utilizando apenas memória constante (**O(1)**). Seu maior ponto fraco é o desempenho: no pior e no caso médio, apresenta tempo quadrático (**O(n²)**), pois cada inserção pode exigir deslocar muitos elementos. No entanto, quando a entrada já está parcialmente ordenada, o desempenho melhora significativamente, podendo chegar a **O(n)** no melhor caso. Isso faz do *Insertion Sort* uma boa escolha para listas pequenas ou quase ordenadas, embora não seja adequado para grandes volumes de dados.
 
 ---
+
+### Merge Sort
+
+O *Merge Sort* segue a estratégia de **Divisão e Conquista**, dividindo o array em metades até restarem subarrays com apenas um elemento e, em seguida, mesclando-os de forma ordenada. Esse processo garante que o algoritmo seja estável, preservando a ordem de elementos iguais, e extremamente eficiente para grandes volumes de dados. Seu tempo de execução é **O(n log n)** em todos os casos (melhor, médio e pior), mas em contrapartida ele exige memória auxiliar proporcional ao tamanho da entrada, resultando em uma complexidade espacial de **O(n)**.
