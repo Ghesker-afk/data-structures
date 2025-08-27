@@ -52,3 +52,25 @@ O *Insertion Sort* é um algoritmo de ordenação que imita o processo de organi
 ### Merge Sort
 
 O *Merge Sort* segue a estratégia de **Divisão e Conquista**, dividindo o array em metades até restarem subarrays com apenas um elemento e, em seguida, mesclando-os de forma ordenada. Esse processo garante que o algoritmo seja estável, preservando a ordem de elementos iguais, e extremamente eficiente para grandes volumes de dados. Seu tempo de execução é **O(n log n)** em todos os casos (melhor, médio e pior), mas em contrapartida ele exige memória auxiliar proporcional ao tamanho da entrada, resultando em uma complexidade espacial de **O(n)**.
+
+---
+
+### Algoritmos de Busca
+
+### Linear Search  
+
+O **Linear Search** (ou busca linear) é o algoritmo mais simples para encontrar um elemento em uma lista. Ele percorre os itens um a um, da primeira até a última posição, verificando se o valor procurado está presente. Caso seja encontrado, retorna a posição correspondente; caso contrário, indica que o elemento não existe na coleção.  
+
+Sua grande vantagem é a simplicidade: pode ser aplicado em qualquer tipo de lista, mesmo quando os elementos não estão ordenados. No entanto, em termos de desempenho, não é muito eficiente. No pior e no caso médio, o algoritmo precisa examinar todos os elementos, resultando em uma complexidade de tempo **O(n)**. Em compensação, o uso de memória adicional é desprezível (**O(1)**).  
+
+---
+
+### Binary Search  
+
+O **Binary Search** (ou busca binária) é um algoritmo muito mais eficiente que a busca linear, mas exige que os elementos da lista estejam previamente ordenados. Ele funciona dividindo a lista ao meio a cada passo: compara o elemento do meio com o valor buscado e, dependendo do resultado, descarta metade da lista, repetindo o processo apenas na metade relevante. Esse mecanismo de divisão sucessiva reduz drasticamente o número de comparações necessárias.  
+
+A complexidade de tempo no pior e no caso médio é **O(log n)**, o que o torna muito eficiente para grandes volumes de dados. No melhor caso, quando o elemento é encontrado logo de início, a busca é **O(1)**. Assim como a busca linear, o Binary Search também é **in-place**, exigindo apenas memória adicional constante (**O(1)**).  
+
+Apesar da vantagem em desempenho, sua principal limitação é a necessidade de os dados estarem ordenados. Por isso, em muitos cenários, ele é usado em conjunto com algoritmos de ordenação.  
+
+---
