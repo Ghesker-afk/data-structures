@@ -1,5 +1,29 @@
 #include <stdio.h>
 
+/** @brief implementation of binary search algorithm that uses a recursive approach
+ * @param A sorted array of integers
+ * @param low lowest index of the array
+ * @param high highest index of the array
+ * @param x the desired element to search in the array
+ * @return returns the index of the desired element, or -1 if the element hasn't be found
+ */
+int recursiveBinarySearch(int *A, int low, int high, int x) {
+  // first base condition
+  if(low > high) {
+    return -1;
+  }
+  int mid = low + (high - low) / 2;
+
+  // second base condition
+  if(x == A[mid]) {
+    return mid;
+  } else if (x < A[mid]) {
+    return recursiveBinarySearch(A, low, mid - 1, x);
+  } else {
+    return recursiveBinarySearch(A, mid + 1, high, x);
+  }
+}
+
  /**
   * @brief: Search for a integer value in a sorted array
   * 
@@ -80,7 +104,7 @@ int main(void) {
   printf("Enter a number: ");
   int x;
   scanf("%d", &x);
-  int index = binarySearchForLast(A, 9, x);
+  int index = recursiveBinarySearch(A, 0, 8, x);
   if (index != -1) {
     printf("Number %d is at index %d.\n", x, index);
   } else {
