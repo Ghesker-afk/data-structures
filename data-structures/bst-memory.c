@@ -203,6 +203,23 @@ int isBinarySearchTree(node* root) {
   }
 }
 
+/** @brief find the height of a binary tree
+ * @param root pointer to the root node of binary tree
+ * @return height of the tree
+ */
+int findHeight(node* root) {
+  if (root == NULL) {
+    return -1;
+  }
+
+  int left = findHeight(root->left);
+  int right = findHeight(root->right);
+  if (left > right) {
+    return left + 1;
+  } else {
+    return right + 1;
+  }
+}
 
 int main(void) {
   node* root = NULL; // creating an empty tree
@@ -238,6 +255,8 @@ printf("\n");
 int isBST = isBinarySearchTree(root);
 printf("Value: %d\n", isBST);
 
+int height = findHeight(root);
+printf("Height of the tree is: %d\n", height);
 
-  return 0;
+return 0;
 }
