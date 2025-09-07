@@ -119,6 +119,70 @@ void Postorder(node* root) {
 }
 
 
+/** @brief function that checks if all the elements in a given tree are lesser than a given value or not
+ * @param root pointer to root node of binary tree
+ * @param value value to be compared with all the other node values
+ * @return returns 1 if all the node values are lesser than value param, 0 otherwise
+ */ 
+int isSubtreeLesser(node* root, int value) {
+  // returns 1 (true) if all elements are lesser or equal to value
+
+  // base case
+  if (root == NULL) {
+    return 1;
+  }
+
+  if (root->data <= value 
+  && isSubtreeLesser(root->left, value) == 1
+  && isSubtreeLesser(root->right, value) == 1) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+/** @brief function that checks if all the elements in a given tree are greater than a given value or not
+ * @param root pointer to root node of binary tree
+ * @param value value to be compared with all the other node values
+ * @return returns 1 if all the node values are greater than value param, 0 otherwise
+ */ 
+int isSubtreeGreater(node* root, int value) {
+  // returns 1 (true) of all elements are greater than value
+
+  // base case
+  if (root == NULL) {
+    return 1;
+  }
+
+  if (root->data > value 
+  && isSubtreeGreater(root->left, value) == 1
+  && isSubtreeGreater(root->right, value) == 1) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+/** @brief function that verifies if the binary tree is a binary search tree
+ * @param root pointer to the root node of binary tree
+ * @return return true if binary search tree, false otherwise
+ */
+int isBinarySearchTree(node* root) {
+  if (root == NULL) {
+    return 1;
+  }
+
+  if (isSubtreeLesser(root->left, root->data) == 1 
+  && isSubtreeGreater(root->right, root->data) == 1 
+  && isBinarySearchTree(root->left) == 1 
+  && isBinarySearchTree(root->right) == 1) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+
 int main(void) {
   node* root = NULL; // creating an empty tree
   root = insertNode(root, 15);
@@ -126,6 +190,7 @@ int main(void) {
   root = insertNode(root, 20);
   root = insertNode(root, 25);
 
+  /*
   int number;
   printf("Type a number: ");
   scanf("%d", &number);
@@ -141,6 +206,11 @@ int main(void) {
   printf("The min value is %d, and the maximum value is %d.\n", min, max);
 
   Inorder(root);
+*/
+
+int isBST = isBinarySearchTree(root);
+printf("Value: %d\n", isBST);
+
 
   return 0;
 }
