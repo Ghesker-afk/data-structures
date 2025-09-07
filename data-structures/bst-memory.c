@@ -85,8 +85,10 @@ int findMax(node* root) {
   return root->data;
 }
 
-// Traverse the binary search tree in the order: <root><left><right>.
 
+/** @brief traverses a binary tree in the following order: <root> <left> <right>.
+ * @param root pointer to root node of binary tree
+ */
 void Preorder(node* root) {
   if (root == NULL) {
     return;
@@ -96,8 +98,25 @@ void Preorder(node* root) {
   Preorder(root->right);
 }
 
-// Inorder traversal in a binary search tree (BST) will give us the elements in sorted order.
 
+/** @brief multiplies all the elements in a integer binary tree by a certain integer
+ * @param root pointer to root node of binary tree
+ * @param value integer to multiply all the node values in a integer binary tree
+ */
+void Multiply(node* root, int value) {
+  if (root == NULL) {
+    return;
+  } 
+
+  root->data *= value;
+
+  Multiply(root->left, value);
+  Multiply(root->right, value);
+}
+
+/** @brief traverses a binary tree in the following order: <root> <left> <right>. This traversal type in a binary search tree (BST) will give us the elements in sorted order. Follow this order: <left> <root> <right>.
+ * @param root pointer to root node of binary tree
+ */
 void Inorder(node* root) {
   if (root == NULL) {
     return;
@@ -108,7 +127,9 @@ void Inorder(node* root) {
 }
 
 // Traverse the binary search tree in the order: <left><right><root>.
-
+/** @brief traverses a binary tree in the following order: <left> <right> <root>.
+ * @param root pointer to root node of binary tree
+ */
 void Postorder(node* root) {
   if (root == NULL) {
     return;
@@ -207,6 +228,12 @@ int main(void) {
 
   Inorder(root);
 */
+
+Preorder(root);
+Multiply(root, 5);
+printf("\n");
+Preorder(root);
+printf("\n");
 
 int isBST = isBinarySearchTree(root);
 printf("Value: %d\n", isBST);
